@@ -1,3 +1,4 @@
+import uvicorn
 from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from azure.cognitiveservices.vision.computervision import ComputerVisionClient
@@ -16,7 +17,7 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     # Adjust this to your frontend domain in production
-    allow_origins=["https://polite-rock-0f7ea8200.5.azurestaticapps.net/"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -166,5 +167,6 @@ async def upload_image(file: UploadFile = File(...)):
 
 
 if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    # Default to 8000 if PORT is not set
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("your_app_module:app", host="0.0.0.0", port=port)
