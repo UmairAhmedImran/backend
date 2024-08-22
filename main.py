@@ -15,7 +15,8 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Adjust this to your frontend domain in production
+    # Adjust this to your frontend domain in production
+    allow_origins=["https://polite-rock-0f7ea8200.5.azurestaticapps.net/"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
