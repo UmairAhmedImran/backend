@@ -16,12 +16,12 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins
+    # Adjust this to your frontend domain in production
+    allow_origins=["https://polite-rock-0f7ea8200.5.azurestaticapps.net"],
     allow_credentials=True,
-    allow_methods=["*"],  # Allows all methods (GET, POST, etc.)
-    allow_headers=["*"],  # Allows all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
-
 
 # Set your Azure Computer Vision credentials
 subscription_key = os.getenv('sub_key')
