@@ -14,14 +14,10 @@ load_dotenv()
 
 app = FastAPI()
 
-origins = [
-    "http://localhost:3000",  # Your React frontend URL during development
-    "https://polite-rock-0f7ea8200.5.azurestaticapps.net",  # Your deployed frontend URL
-]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    # Adjust this to your frontend domain in production
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -173,4 +169,4 @@ async def upload_image(file: UploadFile = File(...)):
 if __name__ == "__main__":
     # Default to 8000 if PORT is not set
     port = int(os.environ.get("PORT", 8000))
-    uvicorn.run("main:app", host="0.0.0.0", port=port)
+    uvicorn.run("your_app_module:mainapp", host="0.0.0.0", port=port)
