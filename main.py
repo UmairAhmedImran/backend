@@ -144,6 +144,7 @@ def classify_text_groq(text_to_classify):
 async def upload_image(file: UploadFile = File(...)):
     try:
         image_data = await file.read()
+        image_bytes = io.BytesIO(image_data).getvalue()
 
         # Enhance the image and extract text with bounding boxes
         text_results = enhance_and_analyze_image(image_data)
